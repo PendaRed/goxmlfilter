@@ -7,6 +7,20 @@ filtering them by simple match or discard rules, extracting only a small subset 
 Currently it doesn't specify elements using the full path, just the final element name.
 I may add the full path match.
 
+## Versions
+
+0.0.1 First version tested January 2020.
+
+## Basic Auth
+
+If you set both environment valiables:
+```
+xmlfilt_username
+xmlfilt_password
+```
+
+Then they will be used to set the basicauth header for the query.
+
 ## Example restserver
 You should run the EgRestServer.go which will serve up 5 people records in the format
 
