@@ -1,0 +1,26 @@
+{
+  "query" : "http://localhost:8080/getdata",
+  "rows_in_file" : 2,
+  "num_files" : 2,
+  "first_tag" : "forename",
+  "filter_equals" : [
+    {
+      "element": "gender",
+      "value": "Male"
+    }
+  ],
+  "filter_not_equals" : [
+    {
+      "element": "house",
+      "value": "12"
+    },
+    {
+      "element": "house",
+      "value": "13"
+    }
+  ],
+  "filter_extract" : [
+    {"element": "forename",          "as": "for"},
+    {"element": "surname",           "as": "sur"}
+  ]
+}
