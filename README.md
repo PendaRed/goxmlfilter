@@ -16,7 +16,7 @@ The [MIT licence](https://github.com/PendaRed/goxmlfilter/blob/master/LICENSE) i
 - 0.0.1 First version tested January 2020.
 - 0.0.2 January 2020.
     - Optionally turn off cert authority check.
-    - Change tage to be an endswith match of the form element/element
+    - Change tag to be an endswith match of the form element/element
 
 ## Basic Auth
 
