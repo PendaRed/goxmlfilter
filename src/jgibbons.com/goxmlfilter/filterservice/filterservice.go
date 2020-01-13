@@ -7,15 +7,15 @@ import (
 
 const (
 	APP_NAME    = "xmlfilter"
-	APP_VERSION = "0.0.1"
-	APP_META    = "by Jonathan Gibbons (c) 2020 All Rights Reserved"
+	APP_VERSION = "0.0.2"
+	APP_META    = "by Jonathan Gibbons"
 )
 
 func Start(config *config.FilterConfig) error {
 	fmt.Printf("Appliction: %s, Version %s, %s\n", APP_NAME, APP_VERSION, APP_META)
 
 	fmt.Printf("[%s] Calling [%s]\n", debugTStamp(), config.RestQuery)
-	resp, err := callRestApi(config.RestQuery)
+	resp, err := callRestApi(config.RestQuery, config.IgnoreCertAuthoriy)
 	if err != nil {
 		return err
 	}
@@ -24,12 +24,14 @@ func Start(config *config.FilterConfig) error {
 	rowFields, fieldColNums := convertExtractsToMap(config.ExtractColumns)
 
 	defer resp.Body.Close()
-	err = decodeIOStream(resp.Body, config.DelimTag,
+	dec := NewDecoder(config.DelimTag,
 		config.RowsInFile,
 		config.NumFiles,
+		config.DebugOutput,
 		convertFiltersToMap(config.FiltersEquals),
 		convertFiltersToMap(config.FiltersNotEquals),
 		rowFields, fieldColNums)
+	err = dec.decodeIOStream(resp.Body)
 	return err
 	//body, err := ioutil.ReadAll(resp.Body)
 	//if err != nil {
