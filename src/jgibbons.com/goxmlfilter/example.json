@@ -1,11 +1,13 @@
 {
   "query" : "http://localhost:8080/getdata",
+  "ignore_cert_authority" : false,
   "rows_in_file" : 2,
   "num_files" : 2,
+  "debug_output" : true,
   "first_tag" : "forename",
   "filter_equals" : [
     {
-      "element": "gender",
+      "element": "people/gender",
       "value": "Male"
     }
   ],
@@ -20,7 +22,7 @@
     }
   ],
   "filter_extract" : [
-    {"element": "forename",          "as": "for"},
-    {"element": "surname",           "as": "sur"}
+    {"element": "people/forename",          "as": "for"},
+    {"element": "people/surname",           "as": "sur"}
   ]
 }
