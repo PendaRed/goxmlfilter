@@ -23,6 +23,7 @@
   ],
   "filter_extract" : [
     {"element": "people/forename",          "as": "for"},
+    {"element": "people/bar",               "as": "bar"},
     {"element": "people/surname",           "as": "sur"}
   ]
 }
