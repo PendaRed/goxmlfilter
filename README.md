@@ -54,7 +54,7 @@ It will invoke your URL from the config file and then look for an element which 
 For each element until the next delimiter it loads the element and its cdata, and compares the cdata for equality or inequality 
 with the configured matchers.  Nothing like xpath, just simple text match.
 
-Records are either include or discarded in this way.
+Records are either included or discarded in this way.
 
 The elements in the record are then compared to the filter extract in the config, and the element can be renamed as well.
 These are the only elements which will be output to csv files, with column headers.
