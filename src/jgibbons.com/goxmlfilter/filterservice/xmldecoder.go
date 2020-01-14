@@ -66,7 +66,7 @@ func (dec *XmlDecoder) decodeIOStream(reader io.Reader) error {
 	dec.opFile = newFile
 
 	row := make([]string, len(dec.extractFields))
-	for {
+	for dec.opFile != nil {
 		// Read tokens from the XML document in a stream.
 		t, _ := decoder.Token()
 		if t == nil {
@@ -233,13 +233,18 @@ func (dec *XmlDecoder) dumpRow(row []string) error {
 		for idx, cell := range row {
 			if idx > 0 {
 				_, err = dec.opFile.WriteString(",")
+				if err != nil {
+					return err
+				}
 			}
-			if err == nil {
-				_, err = dec.opFile.WriteString(cell)
+			_, err = dec.opFile.WriteString(cell)
+			if err != nil {
+				return err
 			}
 		}
-		if err == nil {
-			_, err = dec.opFile.WriteString("\n")
+		_, err = dec.opFile.WriteString("\n")
+		if err != nil {
+			return err
 		}
 	}
 	return err
